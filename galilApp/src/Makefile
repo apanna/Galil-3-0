@@ -12,66 +12,69 @@ PROD_IOC = galil
 # galil.dbd will be created and installed
 DBD += galil.dbd
 # galil.dbd will be made up from these files:
-galil_DBD += base.dbd
+$(PROD_IOC)_DBD += base.dbd
 # To send command_string to the system command interpreter for execution
-galil_DBD += system.dbd
-galil_DBD += galilSupport.dbd
+$(PROD_IOC)_DBD += system.dbd
+$(PROD_IOC)_DBD += galilSupport.dbd
+#$(PROD_IOC)_LIBS += galilSupport
 
 ifdef ASYN
-	galil_DBD += asyn.dbd drvAsynSerialPort.dbd
-	galil_DBD += drvAsynIPPort.dbd
-	galil_LIBS += asyn
+	$(PROD_IOC)_DBD += asyn.dbd drvAsynSerialPort.dbd
+	$(PROD_IOC)_DBD += drvAsynIPPort.dbd
+	$(PROD_IOC)_LIBS += asyn
 endif
 ifdef STD
-	galil_DBD += stdSupport.dbd
-	galil_LIBS += std
+	$(PROD_IOC)_DBD += stdSupport.dbd
+	$(PROD_IOC)_LIBS += std
 endif
 ifdef CAPUTLOG
-	galil_DBD += caPutLog.dbd
-	galil_LIBS += caPutLog
+	$(PROD_IOC)_DBD += caPutLog.dbd
+	$(PROD_IOC)_LIBS += caPutLog
 endif
 ifdef CALC
-	galil_DBD += calcSupport.dbd
-	galil_LIBS += calc
+	$(PROD_IOC)_DBD += calcSupport.dbd
+	$(PROD_IOC)_LIBS += calc
 endif
 ifdef BUSY
-	galil_DBD += busySupport.dbd
-	galil_LIBS += busy
+	$(PROD_IOC)_DBD += busySupport.dbd
+	$(PROD_IOC)_LIBS += busy
 endif
 ifdef SSCAN
-	galil_DBD += sscanSupport.dbd
-	galil_LIBS += sscan
+	$(PROD_IOC)_DBD += sscanSupport.dbd
+	$(PROD_IOC)_LIBS += sscan
 	ifdef SNCSEQ
-		galil_DBD += sscanProgressSupport.dbd
-		galil_LIBS += scanProgress
+		$(PROD_IOC)_DBD += sscanProgressSupport.dbd
+		$(PROD_IOC)_LIBS += scanProgress
 	endif
 endif
 ifdef AUTOSAVE
-	galil_DBD += asSupport.dbd
-	galil_LIBS += autosave
+	$(PROD_IOC)_DBD += asSupport.dbd
+	$(PROD_IOC)_LIBS += autosave
 endif
 ifdef SNCSEQ
-	galil_DBD += devSequencer.dbd
-	galil_LIBS += seqDev seq pv
+	$(PROD_IOC)_DBD += devSequencer.dbd
+	$(PROD_IOC)_LIBS += seqDev seq pv
 endif
 ifdef STREAM
-	galil_DBD += stream.dbd
-	galil_LIBS += stream 
+	$(PROD_IOC)_DBD += stream.dbd
+	$(PROD_IOC)_LIBS += stream 
 endif
 ifdef DEVIOCSTATS
-	galil_DBD += devIocStats.dbd iocAdmin.dbd
-	galil_LIBS += devIocStats
+	$(PROD_IOC)_DBD += devIocStats.dbd iocAdmin.dbd
+	$(PROD_IOC)_LIBS += devIocStats
 endif
 
-galil_LIBS += motor
-galil_SRCS += GalilController.cpp GalilAxis.cpp GalilCSAxis.cpp GalilConnector.cpp GalilPoller.cpp
-galil_SRCS += galil_registerRecordDeviceDriver.cpp
+$(PROD_IOC)_DBD +=  motorSupport.dbd
+$(PROD_IOC)_LIBS += motor
+
+$(PROD_IOC)_SRCS += GalilController.cpp GalilAxis.cpp GalilCSAxis.cpp GalilConnector.cpp GalilPoller.cpp
+$(PROD_IOC)_SRCS += galil_registerRecordDeviceDriver.cpp
 
 # Build the main IOC entry point on workstation OSs.
-galil_SRCS_DEFAULT += galilMain.cpp
+$(PROD_IOC)_SRCS_DEFAULT += galilMain.cpp
 
 # Finally link to the EPICS Base libraries
-galil_LIBS += $(EPICS_BASE_IOC_LIBS)
+$(PROD_IOC)_LIBS += $(EPICS_BASE_IOC_LIBS)
 
 #===========================
 
