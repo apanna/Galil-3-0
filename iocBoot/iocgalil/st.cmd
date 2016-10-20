@@ -14,7 +14,7 @@ epicsEnvSet "EPICS_IOC_LOG_INET" "192.168.1.121"
 epicsEnvSet "EPICS_IOC_LOG_PORT" "7004"
 
 # uncomment to see every command sent to galil
-epicsEnvSet("GALIL_DEBUG_FILE", "galil_debug.txt")
+#epicsEnvSet("GALIL_DEBUG_FILE", "galil_debug.txt")
 ############################################################################
 # Increase size of buffer for error logging from default 1256
 errlogInit(20000)
@@ -42,11 +42,15 @@ cd $(STARTUP)
 iocInit()
 ############################################################################
 dbpf "CEL:GALIL:m1.CNEN", "1"
+dbpf "CEL:GALIL:m1.DIR", "Neg"
+
 dbpf "CEL:GALIL:m2.CNEN", "1"
+dbpf "CEL:GALIL:m2.DIR", "Neg"
+
 # Save motor positions every 5 seconds
-#create_monitor_set("galil_positions.req", 5,"P=$(P):")
+create_monitor_set("galil_positions.req", 5,"P=$(P):")
 # Save motor settings every 30 seconds
-#create_monitor_set("galil_settings.req", 30,"P1=$(P):, P2=RIO01:")
+create_monitor_set("galil_settings.req", 30,"P1=$(P):, P2=RIO01:")
 ############################################################################
 # Start EPICS IOC log server
 iocLogInit()

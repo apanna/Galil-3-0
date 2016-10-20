@@ -17,6 +17,10 @@ $(PROD_IOC)_DBD += base.dbd
 $(PROD_IOC)_DBD += system.dbd
 $(PROD_IOC)_DBD += galilSupport.dbd
 #$(PROD_IOC)_LIBS += galilSupport
+# Require C++ 2011 standard compatibility
+USR_CXXFLAGS_Linux += -std=c++11
+# For sCalcPostfix.h
+USR_INCLUDES += -I$(CALC)/calcApp/src
 
 ifdef ASYN
 	$(PROD_IOC)_DBD += asyn.dbd drvAsynSerialPort.dbd

@@ -2,7 +2,6 @@
 bin
 lib
 include
-db
 dbd
 envPaths*
 cdCommands

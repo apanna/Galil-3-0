@@ -35,8 +35,8 @@ pattern
 {   P,       M,   PORT,    ADDR, EGU, DESC, VELO,  VMAX,  ACCL,  BDST,  BVEL,  BACC,  MRES,  SREV, ERES,     PREC, DHLM,    DLLM,     OFF,     UEIP, RTRY, NTM,   PCOF, ICOF, DCOF}
 
 # Real motors
-   {"CEL:GALIL", "m1", "Galil", 0,    mm,  "",   20,    20,    1,     0,     0,     5,     .0025, 1000, 0.000625, 5,    42273.3, -42273.3, 0,       0,    0   , "YES", 0,    0,    0}
-   {"CEL:GALIL", "m2", "Galil", 1,    mm,  "",   .2,    .2,    1,     0,     0,     5,     .0025, 1000, 0.000625, 5,    42273.3, -42273.3, 0,       0,    0   , "YES", 0,    0,    0}
+   {"CEL:GALIL", "m1", "Galil", 0,    mm,  "xray Z",   5,    1,    1,     0,     0,     5,     .00016, 1000, 0.000625, 5,    12, -20, 0,       0,    0   , "YES", 0,    0,    0}
+   {"CEL:GALIL", "m2", "Galil", 1,    mm,  "xray X",   5,    1,    1,     0,     0,     5,     .00016, 1000, 0.000625, 5,    4, -155, 0,       0,    0   , "YES", 0,    0,    0}
 }
 
 # end
