@@ -1,0 +1,107 @@
+# Description:
+# CS Motor extras substitution file. 
+#
+# This library is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public
+# Licence as published by the Free Software Foundation; either
+# version 2.1 of the Licence, or (at your option) any later version.
+#
+# This library is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# Lesser General Public Licence for more details.
+#
+# You should have received a copy of the GNU Lesser General Public
+# Licence along with this library; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
+#
+# Contact details:
+# mark.clift@synchrotron.org.au
+# 800 Blackburn Road, Clayton, Victoria 3168, Australia.
+
+# Forward kinematic transform equations for CS motors
+#
+# 8 forward equations per controller.
+# 1 forward equation per CS motor I-P (8-15) = 8 in total
+#
+# Eg. I=(A+B)/2 - Forward equations for CS motor I (8)
+#
+# P    - PV prefix
+# M    - CSMotor name
+# PORT - Asyn port name
+# ADDR - CS Motor I-P (8-15)
+
+file "$(TOP)/db/galil_forward_transform.template"
+{
+   pattern { P,           M,    PORT,    ADDR }
+# CS motors (forward transforms)
+           { "CEL:GALIL",     "I",  "Galil", "8"   }
+           { "CEL:GALIL",     "J",  "Galil", "9"   }
+           { "CEL:GALIL",     "K",  "Galil", "10"  }
+           { "CEL:GALIL",     "L",  "Galil", "11"  }
+           { "CEL:GALIL",     "M",  "Galil", "12"  }
+           { "CEL:GALIL",     "N",  "Galil", "13"  }
+           { "CEL:GALIL",     "O",  "Galil", "14"  }
+           { "CEL:GALIL",     "P",  "Galil", "15"  }
+
+}
+
+# Reverse kinematic transform equations for CS motors
+#
+# 8 reverse equations per CS Motor that represent real motors A-H
+# 64 reverse equations per controller in total as there are 8 CS motors I-P (8-15)
+#
+# Eg. A=I-J/2 - Reverse equation A for CS motor I (8)
+#
+# P    - PV prefix
+# M    - CSMotor name
+# PORT - Asyn port name
+# ADDR - CS Motor I-P (8-15)
+
+file "$(GALIL)/GalilSup/Db/galil_reverse_transforms.template"
+{
+   pattern { P,           M,    PORT,    ADDR }
+# CS motors (reverse transforms)
+           { "CEL:GALIL",     "I",  "Galil", "8"   }
+           { "CEL:GALIL",     "J",  "Galil", "9"   }
+           { "CEL:GALIL",     "K",  "Galil", "10"  }
+           { "CEL:GALIL",     "L",  "Galil", "11"  }
+           { "CEL:GALIL",     "M",  "Galil", "12"  }
+           { "CEL:GALIL",     "N",  "Galil", "13"  }
+           { "CEL:GALIL",     "O",  "Galil", "14"  }
+           { "CEL:GALIL",     "P",  "Galil", "15"  }
+
+}
+
+# Kinematic variables
+#
+# 10 variables per controller
+#
+# P    - PV prefix
+# R    - Record Name
+# PORT - Asyn port name
+# ADDR - Hardware port to read
+# PREC - Precision
+#
+# Regardless of record name, addr 0-9 is mapped Q-Z in driver
+# These variables Q-Z can be used in kinematics
+
+file "$(GALIL)/GalilSup/Db/galil_kinematic_variable.template"
+{ 
+   pattern { P,           R,    PORT,    ADDR,  PREC }
+
+           { "CEL:GALIL",     "Q",  "Galil", "0",   "5"  }
+           { "CEL:GALIL",     "R",  "Galil", "1",   "5"  }
+           { "CEL:GALIL",     "S",  "Galil", "2",   "5"  }
+           { "CEL:GALIL",     "T",  "Galil", "3",   "5"  }
+           { "CEL:GALIL",     "U",  "Galil", "4",   "5"  }
+           { "CEL:GALIL",     "V",  "Galil", "5",   "5"  }
+           { "CEL:GALIL",     "W",  "Galil", "6",   "5"  }
+           { "CEL:GALIL",     "X",  "Galil", "7",   "5"  }
+           { "CEL:GALIL",     "Y",  "Galil", "8",   "5"  }
+           { "CEL:GALIL",     "Z",  "Galil", "9",   "5"  }
+
+}
+
+# end
+
