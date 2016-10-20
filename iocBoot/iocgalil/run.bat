@@ -6,7 +6,7 @@ if exist "dllPath.bat" (
 	call dllPath.bat
 )
 if exist "C:\Epics\extensions\bin\%EPICS_HOST_ARCH%\procServ.exe" (
-	procServ --allow -n "CPI-XRAY" -p pid.txt -L log.txt --logstamp -i ^D^C 2001 ..\..\bin\%EPICS_HOST_ARCH%\cpi.exe st.cmd
+	procServ --allow -n "GALIL-MOTOR" -p pid.txt -L log.txt --logstamp -i ^D^C 2009 ..\..\bin\%EPICS_HOST_ARCH%\galil.exe st.cmd
 ) else (
-	..\..\bin\%EPICS_HOST_ARCH%\cpi.exe st.cmd
+	..\..\bin\%EPICS_HOST_ARCH%\galil.exe st.cmd
 )
