@@ -1,1 +1,15 @@
 /.project
+bin
+lib
+include
+db
+dbd
+envPaths*
+cdCommands
+dllPath.bat
+auto_settings.sav*
+O.*/
+*~
+*.swp
+*.dmc
+*.txt
