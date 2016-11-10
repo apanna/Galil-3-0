@@ -56,8 +56,17 @@ ifdef AUTOSAVE
 	$(PROD_IOC)_LIBS += autosave
 endif
 ifdef SNCSEQ
-	$(PROD_IOC)_DBD += devSequencer.dbd
-	$(PROD_IOC)_LIBS += seqDev seq pv
+	# seq-2-1 and earlier has devSequencer
+	ifeq (seq-2-1, $(findstring seq-2-1, $(SNCSEQ)))
+		$(PROD_IOC)_DBD += devSequencer.dbd
+		$(PROD_IOC)_LIBS += seqDev seq pv
+	else ifeq (seq-2.1, $(findstring seq-2.1, $(SNCSEQ)))
+		$(PROD_IOC)_DBD += devSequencer.dbd
+		$(PROD_IOC)_LIBS += seqDev seq pv
+	# seq-2-2
+	else 
+		$(PROD_IOC)_LIBS += seq pv
+	endif
 endif
 ifdef STREAM
 	$(PROD_IOC)_DBD += stream.dbd
